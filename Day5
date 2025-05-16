@@ -1,0 +1,13 @@
+with tmp as (
+
+    select * , Dense_Rank() over(partition by departmentid order by salary desc) as rnk
+    from employee
+ )
+
+
+
+select d.name as Department , t.name as Employee , t.Salary
+from tmp as t
+inner join department as d
+on t.departmentid = d.id
+where rnk <= 3

@@ -1,0 +1,60 @@
+# Write your MySQL query statement below
+
+
+
+select tmp.name as results
+from
+(
+select us.name as name , count(mr.rating) as cnt
+from movies as m
+inner join movierating as mr
+on m.movie_id = mr.movie_id
+inner  join users as us
+on mr.user_id = us.user_id
+group by us.user_id , us.name
+order by cnt desc, us.name
+limit 1
+) as tmp
+
+union all
+
+/*
+select title
+from
+(
+select  m.title as title , avg(mr.rating) as rating
+from movies as m
+inner join movierating as mr
+on m.movie_id = mr.movie_id
+inner  join users as us
+on mr.user_id = us.user_id
+group by m.title 
+order by rating desc , m.title
+limit 1
+
+) as tmp2
+
+union all
+*/
+ 
+select tmp3.title as results
+from
+(
+select m.title as title, avg(mr.rating) as rtn
+from movierating as mr
+inner join movies as m
+on m.movie_id = mr.movie_id
+where month(mr.created_at) = 2 and year(mr.created_at) = 2020
+group by m.title , month(mr.created_at)
+order by rtn desc , m.title
+limit 1
+) as tmp3
+
+
+
+/*
+select mr.movie_id , month(mr.created_at) , avg(mr.rating)
+from movierating as mr
+group by mr.movie_id , month(mr.created_at)
+
+*/

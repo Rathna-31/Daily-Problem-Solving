@@ -1,0 +1,26 @@
+class Solution(object):
+    def areOccurrencesEqual(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        
+        dic = {}
+        for i in range(len(s)):
+
+            if(s[i] in dic):
+                dic[s[i]] += 1
+            else:
+                dic[s[i]] = 0
+            
+        
+        li = []
+
+        for val in dic.values():
+            if(len(li) != 0):
+                if(li[-1] != val):
+                    return False
+            
+            li.append(val)
+        
+        return True

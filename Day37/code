@@ -1,0 +1,17 @@
+class Solution:
+    def solveNQueens(self, n: int) -> List[List[str]]:
+        def NQ(queen , diff , summ):
+            k = len(queen)
+
+            if(k == n):
+                result.append(queen)
+                return None
+            for q in range(n):
+                if q not in queen and k-q not in diff and k+q not in summ: 
+                    NQ(queen+[q], diff+[k-q], summ+[k+q]) 
+
+        result = []
+        NQ([],[],[])
+
+        return [["."*i + "Q" + "."*(n-i-1) for i in sol] for sol in result]
+        

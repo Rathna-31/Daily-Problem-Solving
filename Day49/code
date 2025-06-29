@@ -1,0 +1,14 @@
+class Solution:
+    def reverse(self, x: int) -> int:
+        INT_MIN, INT_MAX = -2**31, 2**31 - 1
+
+        strx = str(x)
+        if strx[0] == '-':
+            rev = '-' + strx[:0:-1]  # Reverse ignoring the negative sign
+        else:
+            rev = strx[::-1]
+        
+        rev_int = int(rev)
+        if rev_int < INT_MIN or rev_int > INT_MAX:
+            return 0
+        return rev_int

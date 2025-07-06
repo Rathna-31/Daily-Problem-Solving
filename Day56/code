@@ -1,0 +1,18 @@
+class Solution:
+    def wordBreak(self, s, wordDict):
+
+        wordSet , memo = set(wordDict), {}
+        def ds(s):
+            if s in memo: return memo[s]
+            if not s: return [""]
+            res = []
+
+            for word in wordSet:
+                if s.startswith(word):
+                    for sub in ds(s[len(word):]):
+                        res.append(word + (" " + sub if sub else ""))
+            memo[s] = res
+            return res
+        return ds(s)
+
+        

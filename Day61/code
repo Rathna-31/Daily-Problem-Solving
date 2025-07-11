@@ -1,1 +1,14 @@
-ode
+class Solution(object):
+    def divide(self, a, b):
+        """
+        :type a: int
+        :type b: int
+        :rtype: int
+        """
+        if(a == -2**31 and b == -1):
+            return 2**31 - 1
+
+        s,a,b,r = (a > 0) == (b > 0) , abs(a) , abs(b) , 0 
+
+        while a >= b:
+            c , d = 1, b
